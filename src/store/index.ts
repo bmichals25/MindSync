@@ -10,29 +10,14 @@ import {
   REGISTER,
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { combineReducers } from '@reduxjs/toolkit';
 
-// Import reducers from slices (we'll create these next)
-// For now, use empty reducers
-const authReducer = (state = { user: null, isAuthenticated: false, loading: false, error: null }, action) => state;
-const sessionsReducer = (state = [], action) => state;
-const moodsReducer = (state = [], action) => state;
-const settingsReducer = (state = {
-  theme: 'light',
-  notifications: true,
-  aiModel: {
-    id: 'gpt-3.5-turbo',
-    name: 'GPT-3.5 Turbo',
-    provider: 'openai',
-  },
-  voice: {
-    enabled: true,
-  },
-  privacy: {
-    dataSharingEnabled: false,
-    storageEnabled: true,
-  },
-}, action) => state;
-const uiReducer = (state = { loading: false, modalVisible: false, currentModal: null }, action) => state;
+// Import reducers from slices
+import authReducer from './slices/authSlice';
+import sessionsReducer from './slices/sessionsSlice';
+import moodsReducer from './slices/moodSlice';
+import settingsReducer from './slices/settingsSlice';
+import uiReducer from './slices/uiSlice';
 
 // Configure persist for each reducer that needs persistence
 const persistConfig = {
@@ -42,24 +27,16 @@ const persistConfig = {
 };
 
 // Combine reducers
-const rootReducer = {
+const rootReducer = combineReducers({
   auth: authReducer,
   sessions: sessionsReducer,
   moods: moodsReducer,
   settings: settingsReducer,
   ui: uiReducer,
-};
+});
 
 // Create persisted reducer
-const persistedReducer = persistReducer(persistConfig, (state, action) => {
-  const newState = {};
-  
-  Object.keys(rootReducer).forEach(key => {
-    newState[key] = rootReducer[key](state ? state[key] : undefined, action);
-  });
-  
-  return newState;
-});
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Configure store
 export const store = configureStore({
