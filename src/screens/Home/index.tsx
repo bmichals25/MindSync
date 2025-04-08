@@ -47,8 +47,8 @@ type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
-  const navigateToChat = () => {
-    navigation.navigate('Chat');
+  const navigateToTherapy = () => {
+    navigation.navigate('Voice');
   };
 
   const navigateToSessionRecap = (sessionId: string) => {
@@ -90,7 +90,7 @@ const HomeScreen: React.FC = () => {
 
           <Button
             title="Talk to Therapist"
-            onPress={navigateToChat}
+            onPress={navigateToTherapy}
             size="large"
             style={styles.talkButton}
           />

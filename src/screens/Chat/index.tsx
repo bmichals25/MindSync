@@ -142,11 +142,7 @@ const ChatScreen: React.FC = () => {
             <Text style={styles.headerText}>MindSync</Text>
           </View>
           
-          <View style={styles.modeToggle}>
-            <TouchableOpacity style={styles.modeButton}>
-              <Text style={styles.modeButtonText}>Voice</Text>
-            </TouchableOpacity>
-          </View>
+          <View style={{ width: 40 }} />
         </View>
 
         {/* Messages */}
@@ -235,23 +231,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     color: colors.textPrimary,
-  },
-  modeToggle: {
-    width: 100,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: colors.backgroundEnd,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modeButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-  },
-  modeButtonText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: colors.primary,
   },
   messagesContainer: {
     flexGrow: 1,

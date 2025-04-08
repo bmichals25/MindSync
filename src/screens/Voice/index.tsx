@@ -131,6 +131,10 @@ const VoiceScreen: React.FC = () => {
             <Ionicons name="chevron-back" size={24} color={colors.textLight} />
           </TouchableOpacity>
           
+          <View style={styles.headerTitle}>
+            <Text style={styles.headerText}>Voice Therapy</Text>
+          </View>
+          
           <View style={styles.statusPill}>
             <Text style={styles.statusText}>
               {isListening ? 'LISTENING' : 'PAUSED'}
@@ -245,6 +249,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  headerTitle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.textLight,
   },
   statusPill: {
     paddingHorizontal: 20,

@@ -40,10 +40,18 @@ const MainTabNavigator = () => {
         }}
       />
       <Tab.Screen 
+        name="Voice" 
+        component={VoiceScreen} 
+        options={{
+          tabBarLabel: 'Therapy',
+          // We'll add icons later
+        }}
+      />
+      <Tab.Screen 
         name="Chat" 
         component={ChatScreen} 
         options={{
-          tabBarLabel: 'Therapy',
+          tabBarLabel: 'Message',
           // We'll add icons later
         }}
       />
@@ -72,7 +80,7 @@ const AuthNavigator = () => {
 // Main Stack Navigator
 const RootNavigator = () => {
   // We'll add auth check logic later
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -81,13 +89,6 @@ const RootNavigator = () => {
       ) : (
         <>
           <Stack.Screen name="Home" component={MainTabNavigator} />
-          <Stack.Screen 
-            name="Voice" 
-            component={VoiceScreen}
-            options={{
-              presentation: 'modal',
-            }}
-          />
           <Stack.Screen 
             name="SessionRecap" 
             component={SessionRecapScreen}
